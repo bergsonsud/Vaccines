@@ -8,7 +8,70 @@
 </head>
 <body>
 
-<%= yield %>
+<div id="wrapper">
+
+
+
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+
+                <li class="sidebar-brand">             
+                     <%= link_to 'Home', home_index_path %>
+                </li>
+                </li>
+                <li>
+                     <%= link_to 'Vacinas', vaccines_path %>
+                </li>
+                <li>
+                    <%= link_to 'Usuários', users_path %>
+                </li>
+
+
+            </ul>
+           
+            
+        <%= form_tag(vacinate_index_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+        <div class="input-group">
+          <%= text_field_tag :search, params[:search], placeholder: "Nome/CPF", class: "form-control" %>
+           <span class="input-group-btn">
+           <%= submit_tag "Procurar", class: "btn btn-default" %>
+           </span>
+        </div>   
+        <% end %>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <%= yield %>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 
 </body>
 </html>
