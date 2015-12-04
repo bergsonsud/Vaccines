@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<<<<<<< HEAD
+
 
   <h1><%= @user.name %></h1><h4><%= User.age(@user) %> anos</h4>
 
@@ -33,42 +33,20 @@
         <th>Categoria</th>
         <th>Data</th>
       </tr>
-=======
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
 
-<p>
-  <strong>Cpf:</strong>
-  <%= @user.cpf %>
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-
-      <th colspan="3"></th>
-    </tr>
->>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
-  </thead>
 
   <tbody>
     <% @user.vaccines.each do |vaccine| %>
       <tr>
-<<<<<<< HEAD
+
         <td><%= vaccine.name %></td>   
-        <td><%= vaccine.category.name %></td>      
-=======
-        <td><%= vaccine.name %></td>       
->>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
+        <td><%= vaccine.category.name %></td> 
         <td><%= localize(vaccine.created_at, :format => :long) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<<<<<<< HEAD
+
 </div>
 
 
@@ -110,39 +88,5 @@
 
 
 
-=======
 
-<%= form_for(@user,url: vacinate_user_path(@user), html: {method: "post"}) do |f|  %>
-
-    <% if @user.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-          <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span class="sr-only">Error:</span>
-                <%= message %><p>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-  
-    <div class="field">
-        <!--<%= collection_select(:vaccine, :id, Vaccine.all, :id, :name,:prompt => 'Vacinas') %>-->
-        <%= 
-        if @total>0
-          collection_select(:vaccine, :id, Vaccine.where('id not in (?)', @vaccines), :id, :name,:prompt => 'Vacinas')              
-        end    
-         %>
-
-        
-    </div>
-
-
-    <div class="actions",>
-
-      <%= submit_tag "Vacinar", 'data-disable-with' => "Please wait.." %>
-    </div>
-<% end %>
->>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
 

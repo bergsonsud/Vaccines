@@ -13,14 +13,14 @@
 
 
 //= require bootstrap-sprockets
-<<<<<<< HEAD
 
-=======
+
+
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
->>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
+
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks

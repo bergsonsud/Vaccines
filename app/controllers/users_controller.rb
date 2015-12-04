@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-<<<<<<< HEAD
+
     #@vaccines = ''
     @vaccines = @user.vaccines.pluck(:id)
     @category = User.age_category(@user).id
@@ -19,10 +19,7 @@ class UsersController < ApplicationController
     @t_user = @user.vaccines.count
     @total = @t_category - @t_user #Vaccine.where('id not in (?)', @vaccines).count  
     @percent = (@t_user.to_f/@t_category.to_f)*100
-=======
-    @vaccines = ''  
-    @total = Vaccine.where('id not in (?)', @vaccines).count  
->>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
+
     if @user.vaccines.count>0
       @vaccines = @user.vaccines.pluck(:id)
     end
