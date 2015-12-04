@@ -10,6 +10,8 @@
       <tr>
         <th>Name</th>
         <th>Cpf</th>
+        <th>Nascimento</th>
+        <th>Idade</th>
         <th>Açoes</th>
       </tr>
   </thead>
@@ -19,8 +21,9 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.cpf %></td>
-        <td><%= link_to 'Vacinar', user_path(user), class: "btn btn-default" %>
-        <%= link_to 'Exibir', user, class: "btn btn-default" %>
+        <td><%= user.birth.strftime("%d/%m/%Y")%></td>
+        <td><%= User.age(user) %></td>
+        <td><%= link_to 'Vacinar', user_path(user), class: "btn btn-warning" %>      
         <%= link_to 'Editar', edit_user_path(user), class: "btn btn-primary"%>
         <%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
       </tr>

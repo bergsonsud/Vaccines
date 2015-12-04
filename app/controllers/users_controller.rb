@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @vaccines = ''    
+    @vaccines = ''  
+    @total = Vaccine.where('id not in (?)', @vaccines).count  
     if @user.vaccines.count>0
       @vaccines = @user.vaccines.pluck(:id)
     end
@@ -27,16 +28,11 @@ class UsersController < ApplicationController
   end
 
   def vacinate
-    @user = User.find(params[:id])  
-    @vaccines = ''    
-    if @user.vaccines.count>0
-      @vaccines = @user.vaccines.pluck(:id)
-    end
-
-       
+    @user = User.find(params[:id])     
     @vaccine = Vaccine.find(params[:vaccine][:id])
     @user.vaccines << @vaccine
-    render "users/show"
+    #render "users/show"
+    redirect_to user_path(@user)
   end
 
   # POST /users
@@ -87,6 +83,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :cpf)
+      params.require(:user).permit(:name, :cpf,:birth)
     end
 end

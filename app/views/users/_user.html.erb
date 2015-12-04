@@ -46,8 +46,12 @@
   
     <div class="field">
         <!--<%= collection_select(:vaccine, :id, Vaccine.all, :id, :name,:prompt => 'Vacinas') %>-->
-        <%=         
-        collection_select(:vaccine, :id, Vaccine.where('id not in (?)', @vaccines), :id, :name,:prompt => 'Vacinas') %>
+        <%= 
+        if @total>0
+          collection_select(:vaccine, :id, Vaccine.where('id not in (?)', @vaccines), :id, :name,:prompt => 'Vacinas')              
+        end    
+         %>
+
         
     </div>
 
@@ -58,7 +62,3 @@
     </div>
 <% end %>
 
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

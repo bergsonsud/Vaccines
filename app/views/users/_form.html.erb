@@ -1,3 +1,13 @@
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -19,6 +29,26 @@
     <%= f.label :cpf %><br>
     <%= f.text_field :cpf %>
   </div>
+
+    <div class="field">
+    <%= f.label :birth %><br>
+    <%=
+
+
+    if @user.birth.blank?
+      f.text_field :birth,id: "datepicker", value: ""
+    else
+     f.text_field :birth,id: "datepicker", value: @user.birth.strftime("%d/%m/%Y")
+     end
+    %>
+  </div>
+
+
+ 
+
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
