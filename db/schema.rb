@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151204033121) do
 
   create_table "categories", force: :cascade do |t|
@@ -20,13 +21,22 @@ ActiveRecord::Schema.define(version: 20151204033121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+=======
+ActiveRecord::Schema.define(version: 20151204010300) do
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "cpf"
+<<<<<<< HEAD
     t.datetime "birth"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "birth"
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
   end
 
   create_table "users_vaccines", force: :cascade do |t|
@@ -41,9 +51,14 @@ ActiveRecord::Schema.define(version: 20151204033121) do
 
   create_table "vaccines", force: :cascade do |t|
     t.string   "name"
+<<<<<<< HEAD
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+=======
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
   end
 
 end

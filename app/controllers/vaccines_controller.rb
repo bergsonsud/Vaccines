@@ -69,6 +69,10 @@ class VaccinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vaccine_params
+<<<<<<< HEAD
       params.require(:vaccine).permit(:name, :category_id)
+=======
+      params.require(:vaccine).permit(:name)
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
     end
 end

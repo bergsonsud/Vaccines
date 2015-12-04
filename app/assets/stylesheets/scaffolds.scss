@@ -6,6 +6,31 @@ body {
   line-height: 18px;
 }
 
+<<<<<<< HEAD
+=======
+/* unvisited link */
+a:link {
+  color: none;
+
+}
+
+/* visited link */
+a:visited {
+  color: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: none;
+}
+
+/* selected link */
+a:active {
+  color: none;
+}
+
+
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -18,6 +43,7 @@ pre {
   font-size: 11px;
 }
 
+<<<<<<< HEAD
 a {
   color: #000;
 
@@ -30,6 +56,9 @@ a {
     background-color: #000;
   }
 }
+=======
+
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
 
 div {
   &.field, &.actions {

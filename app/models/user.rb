@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
     	age -= 1 if Date.today < user.birth + age.years    	
     	return age
   	end
+<<<<<<< HEAD
 
     def self.age_category(user)
       age = Date.today.year - user.birth.year
@@ -24,5 +25,7 @@ class User < ActiveRecord::Base
     
       return category
     end
+=======
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
   	
 end

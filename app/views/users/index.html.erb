@@ -12,7 +12,10 @@
         <th>Cpf</th>
         <th>Nascimento</th>
         <th>Idade</th>
+<<<<<<< HEAD
         <th>Categoria</th>
+=======
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
         <th>Açoes</th>
       </tr>
   </thead>
@@ -24,7 +27,10 @@
         <td><%= user.cpf %></td>
         <td><%= user.birth.strftime("%d/%m/%Y")%></td>
         <td><%= User.age(user) %></td>
+<<<<<<< HEAD
         <td><%= User.age_category(user).name %></td>
+=======
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
         <td><%= link_to 'Vacinar', user_path(user), class: "btn btn-warning" %>      
         <%= link_to 'Editar', edit_user_path(user), class: "btn btn-primary"%>
         <%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
@@ -35,6 +41,10 @@
 
 </div>
 
+<<<<<<< HEAD
 
+=======
+<br>
+>>>>>>> 7e9b44292b43636f7c6e64bf7164d96a098c9534
 
 
