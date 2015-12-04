@@ -1,15 +1,17 @@
+<h1>Usuários</h1>
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Novo Usuario', new_user_path, class: "btn btn-success" %>
+<p>
 
-<h1>Listing Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Cpf</th>
-      <th colspan="3"></th>
-    </tr>
+<div id="no-more-tables">
+  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th>Name</th>
+        <th>Cpf</th>
+        <th>Açoes</th>
+      </tr>
   </thead>
 
   <tbody>
@@ -17,14 +19,17 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.cpf %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Vacinar', user_path(user), class: "btn btn-default" %>
+        <%= link_to 'Exibir', user, class: "btn btn-default" %>
+        <%= link_to 'Editar', edit_user_path(user), class: "btn btn-primary"%>
+        <%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+</div>
+
 <br>
 
-<%= link_to 'New User', new_user_path %>
+

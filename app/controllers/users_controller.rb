@@ -5,12 +5,16 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @users = @users.search(params[:search]).order("created_at DESC") if params[:search].present?      
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    @vaccines = @user.vaccines
+    @vaccines = ''    
+    if @user.vaccines.count>0
+      @vaccines = @user.vaccines.pluck(:id)
+    end
   end
 
   # GET /users/new
@@ -20,6 +24,19 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+
+  def vacinate
+    @user = User.find(params[:id])  
+    @vaccines = ''    
+    if @user.vaccines.count>0
+      @vaccines = @user.vaccines.pluck(:id)
+    end
+
+       
+    @vaccine = Vaccine.find(params[:vaccine][:id])
+    @user.vaccines << @vaccine
+    render "users/show"
   end
 
   # POST /users

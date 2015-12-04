@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
-	has_and_belongs_to_many :vaccines
+	#has_and_belongs_to_many :vaccines
 
-	 def self.search(query)  
-    where("name like ? OR cpf like ?", "%#{query}%", "%#{query}%")
+	has_many :users_vaccines
 
-  end
+    has_many :vaccines, through: :users_vaccines
+
+	def self.search(query)  
+    	where("name like ? OR cpf like ?", "%#{query}%", "%#{query}%")
+  	end
 end

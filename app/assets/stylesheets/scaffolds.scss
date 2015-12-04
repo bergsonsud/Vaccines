@@ -6,6 +6,28 @@ body {
   line-height: 18px;
 }
 
+/* unvisited link */
+a:link {
+  color: none;
+
+}
+
+/* visited link */
+a:visited {
+  color: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: none;
+}
+
+/* selected link */
+a:active {
+  color: none;
+}
+
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;

@@ -18,7 +18,7 @@
             <ul class="sidebar-nav">
 
                 <li class="sidebar-brand">             
-                     <%= link_to 'Home', home_index_path %>
+                     <%= link_to 'Home', root_path %>
                 </li>
                 </li>
                 <li>
@@ -28,11 +28,10 @@
                     <%= link_to 'Usuários', users_path %>
                 </li>
 
-
             </ul>
            
             
-        <%= form_tag(vacinate_index_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+        <%= form_tag(users_path, :method => "get", id: "search-form", class: "navbar-form") do %>
         <div class="input-group">
           <%= text_field_tag :search, params[:search], placeholder: "Nome/CPF", class: "form-control" %>
            <span class="input-group-btn">

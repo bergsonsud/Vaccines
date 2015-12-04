@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Cpf:</strong>
+  <%= @user.cpf %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.vaccines.each do |vaccine| %>
+      <tr>
+        <td><%= vaccine.name %></td>       
+        <td><%= localize(vaccine.created_at, :format => :long) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_for(@user,url: vacinate_user_path(@user), html: {method: "post"}) do |f|  %>
+
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <%= message %><p>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+  
+    <div class="field">
+        <!--<%= collection_select(:vaccine, :id, Vaccine.all, :id, :name,:prompt => 'Vacinas') %>-->
+        <%=         
+        collection_select(:vaccine, :id, Vaccine.where('id not in (?)', @vaccines), :id, :name,:prompt => 'Vacinas') %>
+        
+    </div>
+
+
+    <div class="actions",>
+
+      <%= submit_tag "Vacinar", 'data-disable-with' => "Please wait.." %>
+    </div>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

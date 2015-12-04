@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
-  get 'search/index'
 
-  get 'vacinate/index'
-  get 'vacinate/search'
+  root 'home#index'
 
-  get 'home/index'
+  
+
+  # get 'vacinate/index'
+  # get 'vacinate/search'
+  # #get 'vacinate/user'
+
+  # get '/user/:id', to: 'vacinate#user', as: 'vacinate_user'
 
   resources :vaccines
-  resources :users
-  resources :vacinate
+  resources :users do
+    member do
+         post 'vacinate'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
