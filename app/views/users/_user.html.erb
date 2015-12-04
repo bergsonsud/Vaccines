@@ -68,11 +68,11 @@
             </div>
         <% end %>
       
-        <div class="field">   
-           
+        <div class="field"> 
+            
             <%=         
             if @total>0
-              collection_select(:vaccine, :id, Vaccine.where('id not in (?) and category_id = ?', @vaccines, @category), :id, :name,:prompt => 'Vacinas')        
+              collection_select(:vaccine, :id, Vaccine.where('id not in (?) or category_id = ?', @vaccines, @category), :id, :name,:prompt => 'Vacinas')        
             end %>
 
 
