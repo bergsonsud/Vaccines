@@ -1,0 +1,37 @@
+<h1>Categorias</h1>
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Nova Categoria', new_category_path, class: "btn btn-success" %>
+<p>
+
+<div id="no-more-tables">
+  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+    <thead class="cf">
+      <tr>
+      <th>Nome</th>
+      <th>Idade minima</th>
+      <th>Idada Máxima</th>
+      <th colspan="2">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.age_min %></td>
+        <td><%=
+        if category.age_max<99
+          category.age_max 
+        else
+          ' - '
+        end%></td>        
+        <td><%= link_to 'Editar', edit_category_path(category), class: "btn btn-primary" %>
+        <%= link_to 'Excluir', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

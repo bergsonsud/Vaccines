@@ -1,0 +1,88 @@
+<p id="notice"><%= notice %></p>
+
+
+  <h1><%= @user.name %></h1><h4><%= User.age(@user) %> anos</h4>
+
+
+<p>
+  <strong>CPF:</strong>
+  <%= @user.cpf %>
+</p>
+
+ <div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @percent %>"
+  aria-valuemin="0" aria-valuemax="100" style="width:<%= @percent %>%">
+    <%= @percent %>%
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+      <%= if @total==0
+        simple_format('<div class="alert alert-success" role="alert">Todas as vacinas em dias</div>')
+      end%>                        
+  </div>
+</div>
+
+<div id="no-more-tables">
+  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Data</th>
+      </tr>
+  </thead>
+
+  <tbody>
+    <% @user.vaccines.each do |vaccine| %>
+      <tr>
+        <td><%= vaccine.name %></td>   
+        <td><%= vaccine.category.name %></td>      
+        <td><%= localize(vaccine.created_at, :format => :long) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+  <%= simple_format('<h1>Vacinação</h1>') if @total>0 %>
+    <%= form_for(@user,url: vacinate_user_path(@user), html: {method: "post"}) do |f|  %>
+
+        <% if @user.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    <%= message %><p>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+      
+        <div class="field">   
+           
+            <%=         
+            if @total>0
+              collection_select(:vaccine, :id, Vaccine.where('id not in (?) and category_id = ?', @vaccines, @category), :id, :name,:prompt => 'Vacinas')        
+            end %>
+
+
+        </div>
+
+        <div class="actions">
+        <%= submit_tag "Vacinar", 'data-disable-with' => "Please wait.." if @total>0 %>
+        </div>
+
+    <% end %>
+</div>    
+</div>    
+
+
+
+

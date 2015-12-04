@@ -1,0 +1,40 @@
+<h1>Usuários</h1>
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Novo Usuario', new_user_path, class: "btn btn-success" %>
+<p>
+
+<div id="no-more-tables">
+  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th>Name</th>
+        <th>Cpf</th>
+        <th>Nascimento</th>
+        <th>Idade</th>
+        <th>Categoria</th>
+        <th>Açoes</th>
+      </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.cpf %></td>
+        <td><%= user.birth.strftime("%d/%m/%Y")%></td>
+        <td><%= User.age(user) %></td>
+        <td><%= User.age_category(user).name %></td>
+        <td><%= link_to 'Vacinar', user_path(user), class: "btn btn-warning" %>      
+        <%= link_to 'Editar', edit_user_path(user), class: "btn btn-primary"%>
+        <%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+
+
+

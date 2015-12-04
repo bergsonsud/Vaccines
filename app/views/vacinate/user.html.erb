@@ -1,0 +1,26 @@
+VACINAR
+<%= @user.name %>
+
+<%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <%= message %><p>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.collection_select(:id, Vaccine.all, :id, :name, :prompt => 'Vacinas',  :class => 'form-control' ) %>
+    </div>
+
+    <div class="actions",>
+
+      <%= submit_tag "Vacinar", 'data-disable-with' => "Please wait.." %>
+    </div>
+<% end %>

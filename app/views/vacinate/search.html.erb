@@ -1,0 +1,5 @@
+
+<%= form_tag(vacinate_index_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Procurar usuário" %>
+  <%= submit_tag "Procurar" %>
+<% end %>

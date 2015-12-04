@@ -1,0 +1,39 @@
+<h1>SisVacina</h1>
+
+
+<% @chartCategory = Array.new() { Array.new() } %>
+
+<% @vaccines.each do |vaccine| %>
+<% @chartCategory = Array.new() { Hash.new } %>
+<% @chartCategory << Category.find(vaccine[0]).name  %> <!--category_id-->
+<% @chartCategory << vaccine[1]  %> <!--total-->
+<% end %>
+
+
+<%= @chartCategory  %>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Categoria', 'Quantidade'],<%= raw @chartCategory.to_json.gsub('"','\'')  %>
+
+        ]);
+
+        var options = {
+          title: 'Usuários'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
+
