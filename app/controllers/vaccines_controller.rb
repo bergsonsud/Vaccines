@@ -4,7 +4,7 @@ class VaccinesController < ApplicationController
   # GET /vaccines
   # GET /vaccines.json
   def index
-    @vaccines = Vaccine.all
+    @vaccines = Vaccine.order(:category_id).all
   end
 
   # GET /vaccines/1
@@ -28,7 +28,7 @@ class VaccinesController < ApplicationController
 
     respond_to do |format|
       if @vaccine.save
-        format.html { redirect_to @vaccine, notice: 'Vaccine was successfully created.' }
+        format.html { redirect_to vaccines_path, notice: 'Vaccine was successfully created.' }
         format.json { render :show, status: :created, location: @vaccine }
       else
         format.html { render :new }

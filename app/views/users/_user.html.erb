@@ -69,17 +69,16 @@
         <% end %>
       
         <div class="field"> 
-            
+            <div class="form-group col-md-4">
             <%=         
             if @total>0
-              collection_select(:vaccine, :id, Vaccine.where('id not in (?) or category_id = ?', @vaccines, @category), :id, :name,:prompt => 'Vacinas')        
+              collection_select(:vaccine, :id, Vaccine.where('id not in (?) and category_id = ?', @vaccines, @category), :id, :name, {}, {class: "form-control input-xs"})        
             end %>
-
-
+            </div>
         </div>
 
         <div class="actions">
-        <%= submit_tag "Vacinar", 'data-disable-with' => "Please wait.." if @total>0 %>
+        <%= submit_tag "Vacinar",class: "btn btn-success", 'data-disable-with' => "Vacinando.." if @total>0 %>
         </div>
 
     <% end %>

@@ -1,28 +1,24 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
+
   def index
     @users = User.all
     @users = @users.search(params[:search]).order("created_at DESC") if params[:search].present?      
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
-
-    #@vaccines = ''
-    @vaccines = @user.vaccines.pluck(:id)
+    @vaccines = ''    
     @category = User.age_category(@user).id
     @t_category = Vaccine.where('category_id = (?)', @category).count
     @t_user = @user.vaccines.count
-    @total = @t_category - @t_user #Vaccine.where('id not in (?)', @vaccines).count  
+    @total = @t_category - @t_user 
     @percent = (@t_user.to_f/@t_category.to_f)*100
 
     if @user.vaccines.count>0
       @vaccines = @user.vaccines.pluck(:id)
     end
+    
   end
 
   # GET /users/new
@@ -49,7 +45,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
