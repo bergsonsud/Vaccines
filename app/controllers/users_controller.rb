@@ -3,11 +3,11 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.all
+    @users = User.order(:name).all
     @users = @users.search(params[:search]).order("created_at DESC") if params[:search].present?      
   end
 
-  def show
+  def show   
     @vaccines = ''    
     @category = User.age_category(@user).id
     @t_category = Vaccine.where('category_id = (?)', @category).count
@@ -15,9 +15,11 @@ class UsersController < ApplicationController
     @total = @t_category - @t_user 
     @percent = (@t_user.to_f/@t_category.to_f)*100
 
+
     if @user.vaccines.count>0
       @vaccines = @user.vaccines.pluck(:id)
     end
+    @rest = Vaccine.order(:name).where('id not in (?) and category_id = ?', @vaccines, @category)
     
   end
 

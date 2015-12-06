@@ -4,4 +4,6 @@ class Vaccine < ActiveRecord::Base
     has_many :users, through: :users_vaccines
 
     validates_presence_of :name, :category_id
+
+    
 end
