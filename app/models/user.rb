@@ -3,8 +3,15 @@ class User < ActiveRecord::Base
 	has_many :users_vaccines
     has_many :vaccines, through: :users_vaccines
     validates_presence_of :name, :cpf, :birth
+    validate :birth_cannot_be_in_the_future
 
-	def self.search(query)  
+  def birth_cannot_be_in_the_future
+    if birth.present? && birth > Date.today
+      errors.add(:birth, "não pode ser uma data futura")
+    end
+  end
+
+	def self.search(query)
     	where("name like ? OR cpf like ?", "%#{query}%", "%#{query}%")
   	end
 

@@ -3,7 +3,9 @@
 one:
   name: MyString
   cpf: MyString
+  birth: 1990-06-15
 
 two:
   name: MyString
   cpf: MyString
+  birth: 1985-03-22
