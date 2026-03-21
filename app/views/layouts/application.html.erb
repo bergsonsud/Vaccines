@@ -42,6 +42,11 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
+            <% flash.each do |type, message| %>
+              <div style="padding: 10px 15px; margin-bottom: 10px; background-color: #dff0d8; color: #3c763d; border: 1px solid #d6e9c6; border-radius: 4px;">
+                <%= message %>
+              </div>
+            <% end %>
             <%= yield %>
             
           </div>

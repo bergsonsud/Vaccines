@@ -21,7 +21,8 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: { cpf: @user.cpf, name: @user.name }
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to users_path
+    assert_equal 'Usuário criado com sucesso.', flash[:notice]
   end
 
   test "should show user" do
@@ -37,6 +38,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should update user" do
     patch :update, id: @user, user: { cpf: @user.cpf, name: @user.name }
     assert_redirected_to user_path(assigns(:user))
+    assert_equal 'Usuário atualizado com sucesso.', flash[:notice]
   end
 
   test "should destroy user" do
@@ -45,5 +47,6 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to users_path
+    assert_equal 'Usuário removido com sucesso.', flash[:notice]
   end
 end
