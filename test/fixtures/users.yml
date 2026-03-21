@@ -3,7 +3,9 @@
 one:
   name: MyString
   cpf: MyString
+  email: one@example.com
 
 two:
   name: MyString
   cpf: MyString
+  email: two@example.com

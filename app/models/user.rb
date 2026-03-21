@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
 	has_many :users_vaccines
     has_many :vaccines, through: :users_vaccines
-    validates_presence_of :name, :cpf, :birth
+    validates_presence_of :name, :cpf, :birth, :email
+    validates_format_of :email, with: /\A[^@\s]+@[^@\s]+\z/
 
 	def self.search(query)  
     	where("name like ? OR cpf like ?", "%#{query}%", "%#{query}%")
