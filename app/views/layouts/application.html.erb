@@ -42,8 +42,14 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
+            <% if flash[:notice] %>
+              <p style="background-color: #dff0d8; color: #3c763d; padding: 10px; border: 1px solid #d6e9c6; border-radius: 4px; margin-bottom: 15px;"><%= flash[:notice] %></p>
+            <% end %>
+            <% if flash[:alert] %>
+              <p style="background-color: #f2dede; color: #a94442; padding: 10px; border: 1px solid #ebccd1; border-radius: 4px; margin-bottom: 15px;"><%= flash[:alert] %></p>
+            <% end %>
             <%= yield %>
-            
+
           </div>
         </div>
       </div>
