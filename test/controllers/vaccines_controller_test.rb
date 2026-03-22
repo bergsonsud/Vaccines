@@ -11,6 +11,12 @@ class VaccinesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:vaccines)
   end
 
+  test "should list vaccines in alphabetical order" do
+    get :index
+    vaccines = assigns(:vaccines)
+    assert_equal vaccines.map(&:name), vaccines.map(&:name).sort
+  end
+
   test "should get new" do
     get :new
     assert_response :success
