@@ -1,7 +1,38 @@
 require 'test_helper'
 
 class VaccineTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @category = categories(:one)
+    @vaccine = Vaccine.new(name: "Gripe", category_id: @category.id)
+  end
+
+  test "deve ser valida com nome e categoria" do
+    assert @vaccine.valid?
+  end
+
+  test "deve exigir nome" do
+    @vaccine.name = nil
+    assert_not @vaccine.valid?
+    assert_includes @vaccine.errors[:name], "can't be blank"
+  end
+
+  test "deve exigir categoria" do
+    @vaccine.category_id = nil
+    assert_not @vaccine.valid?
+    assert_includes @vaccine.errors[:category_id], "can't be blank"
+  end
+
+  test "nao deve permitir cadastrar duas vacinas com o mesmo nome" do
+    @vaccine.save!
+    duplicata = Vaccine.new(name: "Gripe", category_id: @category.id)
+    assert_not duplicata.valid?
+    assert_includes duplicata.errors[:name], "já está cadastrada"
+  end
+
+  test "nao deve permitir cadastrar duas vacinas com o mesmo nome em case diferente" do
+    @vaccine.save!
+    duplicata = Vaccine.new(name: "GRIPE", category_id: @category.id)
+    assert_not duplicata.valid?
+    assert_includes duplicata.errors[:name], "já está cadastrada"
+  end
 end
