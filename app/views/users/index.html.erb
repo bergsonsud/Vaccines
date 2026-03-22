@@ -24,7 +24,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-        <td><%= user.cpf %></td>
+        <td><%= mascarar_cpf(user.cpf) %></td>
         <td><%= user.birth.strftime("%d/%m/%Y")%></td>
         <td><%= User.age(user) %></td>
 
