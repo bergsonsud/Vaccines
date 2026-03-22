@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204033121) do
+ActiveRecord::Schema.define(version: 20260322000000) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.integer  "age_min"
     t.integer  "age_max"
     t.datetime "created_at", null: false
