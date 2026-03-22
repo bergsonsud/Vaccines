@@ -4,6 +4,7 @@ class Vaccine < ActiveRecord::Base
     has_many :users, through: :users_vaccines
 
     validates_presence_of :name, :category_id
+    validates :name, uniqueness: { case_sensitive: false, message: "já está cadastrada" }
 
-    
+
 end
