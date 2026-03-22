@@ -11,6 +11,13 @@ class VaccinesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:vaccines)
   end
 
+  test "index should return vaccines in consistent order by category and name" do
+    get :index
+    vaccines = assigns(:vaccines)
+    ordered = vaccines.sort_by { |v| [v.category_id.to_i, v.name] }
+    assert_equal ordered.map(&:id), vaccines.map(&:id)
+  end
+
   test "should get new" do
     get :new
     assert_response :success
