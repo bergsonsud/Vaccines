@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  cpf: MyString
+  name: João Silva
+  cpf: "12345678901"
+  birth: 1990-03-15 00:00:00
 
 two:
-  name: MyString
-  cpf: MyString
+  name: Maria Santos
+  cpf: "98765432100"
+  birth: 1985-07-20 00:00:00

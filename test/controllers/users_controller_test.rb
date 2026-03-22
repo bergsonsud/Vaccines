@@ -18,10 +18,28 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { cpf: @user.cpf, name: @user.name }
+      post :create, user: { cpf: "55566677788", name: "Novo Usuário", birth: "1995-06-10" }
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to users_path
+  end
+
+  test "should not create user with CPF duplicado" do
+    assert_no_difference('User.count') do
+      post :create, user: { cpf: @user.cpf, name: "Outro Nome", birth: "1990-01-01" }
+    end
+
+    assert_response :success
+    assert assigns(:user).errors[:cpf].any?
+  end
+
+  test "should not create user with CPF com letras" do
+    assert_no_difference('User.count') do
+      post :create, user: { cpf: "123ABC78901", name: "Teste", birth: "1990-01-01" }
+    end
+
+    assert_response :success
+    assert assigns(:user).errors[:cpf].any?
   end
 
   test "should show user" do
@@ -35,7 +53,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { cpf: @user.cpf, name: @user.name }
+    patch :update, id: @user, user: { cpf: @user.cpf, name: @user.name, birth: @user.birth }
     assert_redirected_to user_path(assigns(:user))
   end
 
