@@ -4,7 +4,7 @@ class VaccinesController < ApplicationController
   # GET /vaccines
   # GET /vaccines.json
   def index
-    @vaccines = Vaccine.order(:category_id).all
+    @vaccines = Vaccine.order(:name).all
   end
 
   # GET /vaccines/1
