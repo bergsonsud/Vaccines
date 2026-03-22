@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
     has_many :vaccines, through: :users_vaccines
     validates_presence_of :name, :cpf, :birth
 
-	def self.search(query)  
+    before_save :normalizar_nome
+
+	def self.search(query)
     	where("name like ? OR cpf like ?", "%#{query}%", "%#{query}%")
   	end
 
@@ -27,5 +29,10 @@ class User < ActiveRecord::Base
     end
 
 
-  	
+
+  private
+
+    def normalizar_nome
+      self.name = name.split.map(&:capitalize).join(' ') if name.present?
+    end
 end
